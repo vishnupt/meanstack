@@ -1,0 +1,42 @@
+<mat-toolbar>
+  <span>REGISTRATION</span>
+</mat-toolbar>
+<mat-card-content>
+  <form class="my-form">
+     <mat-form-field class="full-width">
+            <mat-label>First Name</mat-label>
+            <input  matInput  placeholder="First name" #first_name  name="fname"  required>
+         </mat-form-field>
+         <mat-form-field class="full-width">
+            <mat-label>Last Name</mat-label>
+            <input  matInput  placeholder="Last Name" #last_name name="lname"  required>
+         </mat-form-field>
+         
+         <mat-form-field class="full-width">
+            <mat-label>Email</mat-label>
+            <input  matInput type="email"  placeholder="Email" #email name="email">
+         </mat-form-field>
+         <mat-form-field class="full-width">
+            <mat-label>Password</mat-label>
+            <input  matInput type="password"  placeholder="Password" #password  name="password">
+         </mat-form-field>
+         <section class="example-section">
+          <label class="example-margin">Gender:</label>
+          <mat-radio-group [(ngModel)]="gender" [ngModelOptions]="{standalone: true}" >
+            <mat-radio-button class="example-margin" value="Male">Male</mat-radio-button>
+            <mat-radio-button class="example-margin" value="Female">Female</mat-radio-button>
+            <mat-radio-button class="example-margin" value="Other">Other</mat-radio-button>
+          </mat-radio-group>
+        </section>
+     
+        <mat-form-field>
+          <mat-label>Date of Birth</mat-label>
+      <input matInput [matDatepicker]="picker" #dob placeholder="Choose a date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </form>
+</mat-card-content>
+<mat-card-actions>
+  <button mat-raised-button (click)="register(first_name.value, last_name.value, email.value, password.value, gender, dob.value)" color="primary">REGISTER</button>
+</mat-card-actions>
