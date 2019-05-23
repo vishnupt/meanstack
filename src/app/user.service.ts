@@ -11,8 +11,9 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  addUser(first_name, last_name, email, password, gender, dob) {
+  addUser(username, first_name, last_name, email, password, gender, dob) {
     const obj = {
+      username: username,
       first_name: first_name,
       last_name: last_name,
       email: email,
