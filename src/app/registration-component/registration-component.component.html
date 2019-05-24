@@ -18,11 +18,11 @@
          
          <mat-form-field class="full-width">
             <mat-label>Email</mat-label>
-            <input  matInput type="email"  placeholder="Email" #email name="email">
+            <input  matInput type="email"  placeholder="Email" #email name="email" required>
          </mat-form-field>
          <mat-form-field class="full-width">
             <mat-label>Password</mat-label>
-            <input  matInput type="password"  placeholder="Password" #password  name="password">
+            <input  matInput type="password"  placeholder="Password" #password  name="password" required>
          </mat-form-field>
          <section class="example-section">
           <label class="example-margin">Gender:</label>
@@ -35,7 +35,7 @@
      
         <mat-form-field>
           <mat-label>Date of Birth</mat-label>
-      <input matInput [matDatepicker]="picker" #dob placeholder="Choose a date">
+      <input matInput [matDatepicker]="picker" #dob placeholder="Choose a date" required>
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>

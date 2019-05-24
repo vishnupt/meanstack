@@ -21,7 +21,15 @@ export class UserService {
       gender: gender,
       dob: dob
     };
-    console.log(obj);
+    this.http.post(`${this.uri}/add`, obj)
+        .subscribe(res => console.log('Done'));
+  }
+
+  loginUser(email, password) {
+    const obj = { 
+      email: email,
+      password: password,
+    };
     this.http.post(`${this.uri}/add`, obj)
         .subscribe(res => console.log('Done'));
   }

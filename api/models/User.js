@@ -3,14 +3,12 @@ const Schema = mongoose.Schema;
 var bcrypt = require('bcrypt');
 
 // Define collection and schema for Business
-let User = new Schema({
+var User = new Schema({
   username: {
     type: String,
-    required: true,
   },
   first_name: {
     type: String,
-    required: true,
   },
   last_name: {
     type: String
@@ -21,20 +19,40 @@ let User = new Schema({
   },
   email: {
     type: String,
+    unique: true,
     required: true,
-    unique: true
   },
   dob: {
     type: String,
-    required: true,
   },
   gender: {
     type: String,
-    required: true,
+    
   }
 },{
     collection: 'userdb'
 });
+
+User.statics.authenticate = function (email, password, callback) {
+  var user = this;
+  user.findOne({ email: email })
+    .exec(function (err, user) {
+      if (err) {
+        return callback(err)
+      } else if (!user) {
+        var err = new Error('User not found.');
+        err.status = 401;
+        return callback(err);
+      }
+      bcrypt.compare(password, user.password, function (err, result) {
+        if (result === true) {
+          return callback(null, user);
+        } else {
+          return callback();
+        }
+      })
+    });
+}
 
 User.pre('save', function (next) {
   var user = this;

@@ -17,6 +17,29 @@ userRoutes.route('/add').post(function (req, res) {
     });
 });
 
+
+userRoutes.route('/login').post(function(req, res, next) {
+  if (req.body.email && req.body.password) {
+    User.authenticate(req.body.email, req.body.password, function (error, user){
+      if(user){
+        res.status(200).json({'user': 'user logged in'});
+      }
+      else{
+        res.status(400).send("invalid credentials");
+      }
+    })
+  }
+  else {
+    var err = new Error('Email and password are required.');
+    err.status = 401;
+    var err = new Error('All fields required.');
+    err.status = 400;
+    return next(err);
+  }
+});
+
+
+
 // Defined get data(index or listing) route
 userRoutes.route('/').get(function (req, res) {
     User.find(function (err, users){
