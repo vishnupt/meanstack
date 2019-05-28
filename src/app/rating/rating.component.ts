@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {FileUploader} from "ng2-file-upload";
 import {Observable} from "rxjs";
+import { ActivatedRoute, Router } from '@angular/router';
 import {HttpClient} from "@angular/common/http";
 import { BusinessService } from '../business.service';
 import Business from '../Business';
@@ -22,7 +23,11 @@ export class RatingComponent implements OnInit {
   });
   files;
   title: string = 'Angular File Upload';
-  constructor(private fb: FormBuilder, private http: HttpClient, private bs: BusinessService, ) { }
+  business: any = {};
+
+  constructor(private fb: FormBuilder, private http: HttpClient, private bs: BusinessService, 
+    private route: ActivatedRoute,
+    private router: Router,) { }
   
 
   uploadSubmit(){
@@ -36,7 +41,6 @@ export class RatingComponent implements OnInit {
         for (let j = 0; j < this.uploader.queue.length; j++) {
           let data = new FormData();
           let fileItem = this.uploader.queue[j]._file;
-          console.log(fileItem.name);
           data.append('file', fileItem);
           data.append('fileSeq', 'seq'+j);
           data.append( 'dataType', this.uploadForm.controls.type.value);
@@ -45,24 +49,38 @@ export class RatingComponent implements OnInit {
         this.uploader.clearQueue();
   }
 
-  currentRating(rating){
-    this.current_rating = rating
+  currentRating(value){
+    for(let i=0;i<this.businesses.length; i++){
+      if(value==this.businesses[i].name){
+        console.log(this.businesses[i]._id);
+        this.current_rating = this.businesses[i].rating;
+      }
+    }    
   }
-
-  // uploadFile(data: FormData): Observable {
-  //   return this.http.post('http://localhost:8080/upload', data);
-  // }
 
   ngOnInit() {
     this.uploadForm = this.fb.group({
       document: [null, null],
       type:  [null, Validators.compose([Validators.required])]
     });
-    this.bs.getBusinesses().subscribe((data: Business[]) => {
-      this.businesses = data;
-  });
+    this.route.params.subscribe(params => {
+      this.bs.getBusinesses().subscribe((data: Business[]) => {
+        this.businesses = data;
+    });
+    });
   }
 
+  updateBusiness(name, place, rating, id) {
+    for(let i=0;i<this.businesses.length; i++){
+      if(name==this.businesses[i].name){
+        id = this.businesses[i]._id;
+        place = this.businesses[i].place;
+      }
+    } 
+    this.route.params.subscribe(params => {
+       this.bs.updateBusiness(name, place, rating, id);
+       // this.router.navigate(['business']);
+       location.reload()
+    });
+  }
 }
-
-

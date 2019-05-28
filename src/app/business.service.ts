@@ -37,7 +37,6 @@ export class BusinessService {
     }
 
   updateBusiness(name, place, rating, id) {
-
     const obj = {
         name: name,
         place: place,
