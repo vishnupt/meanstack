@@ -75,10 +75,14 @@ export class RatingComponent implements OnInit {
       if(name==this.businesses[i].name){
         id = this.businesses[i]._id;
         place = this.businesses[i].place;
+        let old_rating = this.businesses[i].rating;
+        let total_ratings = this.businesses[i].rating;
+        let new_total_rating = (total_ratings + 1);
+        let new_rating = ((old_rating + rating)/new_total_rating)
       }
     } 
     this.route.params.subscribe(params => {
-       this.bs.updateBusiness(name, place, rating, id);
+       this.bs.updateBusiness(name, place, new_rating, id, new_total_rating);
        // this.router.navigate(['business']);
        location.reload()
     });

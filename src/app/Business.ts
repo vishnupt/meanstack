@@ -3,4 +3,5 @@ export default class Business {
   place: String;
   rating: Number;
   image: String;
+  total_ratings: Number;
 }
