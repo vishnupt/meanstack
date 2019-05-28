@@ -1,11 +1,13 @@
 const express = require('express'),
 path = require('path'),
 bodyParser = require('body-parser'),
-cors = require('cors'),
 mongoose = require('mongoose'),
 config = require('./DB');
 var passport = require('passport');
+var cors = require('cors')
 
+const app = express();
+app.use(cors())
 
 const businessRoute = require('./routes/business.route');
 const userRoute = require('./routes/user.route');
@@ -16,10 +18,9 @@ mongoose.connect(config.DB, { useNewUrlParser: true }).then(
 );
 var version=process.env.version || "1.0"
 
-const app = express();
+
 app.use(bodyParser.json());
-app.use(cors());
-app.use(express.static(path.join(__dirname,'../dist/angular7crud')));
+app.use(express.static(path.join(__dirname,'../dist/meanstack')));
 app.use(passport.initialize());
 app.get('/getversion',function(req,res){
   console.log('Version '+version);
@@ -30,7 +31,7 @@ app.use('/business', businessRoute);
 app.use('/user', userRoute);
 
 app.use('/',function(req,res){
-  res.sendFile(path.join(__dirname,'../dist/angular7crud','index.html'))
+  res.sendFile(path.join(__dirname,'../dist/meanstack','index.html'))
 });
 
 

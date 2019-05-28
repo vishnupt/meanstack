@@ -11,13 +11,13 @@ export class BusinessService {
 
   constructor(private http: HttpClient) { }
 
-  addBusiness(person_name, business_name, business_gst_number) {
+  addBusiness(name, place, rating, image) {
     const obj = {
-      person_name: person_name,
-      business_name: business_name,
-      business_gst_number: business_gst_number
+      name: name,
+      place: place,
+      rating: rating,
+      image: image
     };
-    console.log(obj);
     this.http.post(`${this.uri}/add`, obj)
         .subscribe(res => console.log('Done'));
   }
@@ -36,12 +36,12 @@ export class BusinessService {
             .get(`${this.uri}/edit/${id}`);
     }
 
-  updateBusiness(person_name, business_name, business_gst_number, id) {
+  updateBusiness(name, place, rating, id) {
 
     const obj = {
-        person_name: person_name,
-        business_name: business_name,
-        business_gst_number: business_gst_number
+        name: name,
+        place: place,
+        rating: rating
       };
     this
       .http

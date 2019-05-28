@@ -43,9 +43,9 @@ businessRoutes.route('/update/:id').post(function (req, res) {
     if (!business)
       return next(new Error('Could not load Document'));
     else {
-        business.person_name = req.body.person_name;
-        business.business_name = req.body.business_name;
-        business.business_gst_number = req.body.business_gst_number;
+        business.name = req.body.name;
+        business.place = req.body.place;
+        business.rating = req.body.rating;
 
         business.save().then(business => {
           res.json('Update complete');

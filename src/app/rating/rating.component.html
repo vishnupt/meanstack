@@ -1,0 +1,62 @@
+<mat-card>
+      <form [formGroup]="uploadForm" (ngSubmit)="uploadSubmit()">
+        <mat-card-content>
+          <div class="form-field">
+            <mat-label>Select Hotel</mat-label>
+            <select formControlName="type" (change)="currentRating($event.target.value)" required>
+              <option *ngFor="let business of businesses" value="{{business.rating}}" >{{business.name}}</option>
+            </select>
+            
+          </div>
+          <br>
+          <mat-label>Current Rating: {{current_rating}}</mat-label>
+          <br>
+          <br>
+          <mat-label>Add Your Rating: </mat-label>
+          <div class="form-field">
+            <input type="number" max="5" min="0">
+          </div>
+          <br>
+          
+          <mat-label>Add Images: </mat-label>
+          <input formControlName="document" type="file" ng2FileSelect accept=".png" [uploader]="uploader" multiple/><br/>
+          <br>
+          <div class="drop-zone">
+          <div ng2FileDrop [uploader]="uploader" class="drop-zone">
+             Drag and drop Images to upload {{options}}
+          </div>
+          </div>
+          <br>
+          <table>
+            <thead>
+            <tr>
+              <th width="40%">
+                File Name
+              </th>
+              <th width="25%">
+                File Size
+              </th>
+              <th width="10%"></th>
+              <th width="25%">
+                Remove
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of uploader.queue">
+              <th width="40%">
+                {{item._file.name}}
+              </th>
+              <th width="25%">{{item._file.size}}</th>
+              <th width="10%"></th>
+              <th class="text-center" width="25%">
+                <mat-icon (click)="item.remove()">delete</mat-icon>
+              </th>
+            </tr>
+            </tbody>
+          </table>
+          <br>
+          <button mat-raised-button color="accent" [disabled]="!uploadForm.valid" type="submit">Upload Data</button>
+        </mat-card-content>
+      </form>
+</mat-card>

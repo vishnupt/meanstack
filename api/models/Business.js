@@ -3,17 +3,20 @@ const Schema = mongoose.Schema;
 
 // Define collection and schema for Business
 let Business = new Schema({
-  person_name: {
+  name: {
     type: String
   },
-  business_name: {
-    type: String
-  },
-  business_gst_number: {
+  rating: {
     type: Number
+  },
+  place: {
+    type: String
+  },
+  image: {
+     type: String
   }
 },{
-    collection: 'business'
+    collection: 'businessesnew'
 });
 
 module.exports = mongoose.model('Business', Business);

@@ -5,18 +5,20 @@ import { GstEditComponent } from './gst-edit/gst-edit.component';
 import { GstGetComponent } from './gst-get/gst-get.component';
 import { LoginComponentComponent } from './login-component/login-component.component';
 import { RegistrationComponentComponent } from './registration-component/registration-component.component';
+import { RatingComponent } from './rating/rating.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {
-    path: 'business',
+    path: 'hotels',
     component: GstGetComponent
   },
   {
-    path: 'business/create',
+    path: 'hotel/create',
     component: GstAddComponent
   },
   {
-    path: 'business/edit/:id',
+    path: 'hotel/edit/:id',
     component: GstEditComponent
   },
   {
@@ -26,6 +28,14 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegistrationComponentComponent
+  },
+  {
+    path: 'hotel/rate',
+    component: RatingComponent
+  },
+  {
+    path: '',
+    component: HomeComponent
   }
 ];
 

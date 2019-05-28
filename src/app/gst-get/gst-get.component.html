@@ -1,18 +1,20 @@
 <table class="table table-hover">
   <thead>
   <tr>
-      <td>Person Name</td>
-      <td>Business Name</td>
-      <td>GST Number</td>
+      <td>Hotel</td>
+      <td>Location</td>
+      <td>Rating</td>
+      <td>Image</td>
       <td colspan="2">Actions</td>
   </tr>
   </thead>
 
   <tbody>
       <tr *ngFor="let business of businesses">
-          <td>{{ business.person_name }}</td>
-          <td>{{ business.business_name }}</td>
-          <td>{{ business.business_gst_number }}</td>
+          <td>{{ business.name }}</td>
+          <td>{{ business.place }}</td>
+          <td>{{ business.rating }}</td>
+          <td><img src="{{business.image}}" width="50px" height="50px"></td>
           <td><a [routerLink]="['edit', business._id]" class="btn btn-primary">Edit</a></td>
           <td><a (click) = "deleteBusiness(business._id)" class="btn btn-danger">Delete</a></td>
       </tr>

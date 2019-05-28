@@ -2,34 +2,34 @@
   <div class="card-body">
     <form [formGroup]="angForm" novalidate>
       <div class="form-group">
-        <label class="col-md-4">Person Name</label>
-        <input type="text" class="form-control" formControlName="person_name" #person_name [(ngModel)] = "business.person_name" />
+        <label class="col-md-4">Hotel Name</label>
+        <input type="text" class="form-control" formControlName="name" #name [(ngModel)] = "business.name" />
       </div>
-      <div *ngIf="angForm.controls['person_name'].invalid && (angForm.controls['person_name'].dirty || angForm.controls['person_name'].touched)" class="alert alert-danger">
-        <div *ngIf="angForm.controls['person_name'].errors.required">
-          Person Name is required.
+      <div *ngIf="angForm.controls['name'].invalid && (angForm.controls['name'].dirty || angForm.controls['name'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['name'].errors.required">
+          Hotel Name is required.
         </div>
       </div>
       <div class="form-group">
-        <label class="col-md-4">Business Name </label>
-        <input type="text" class="form-control" formControlName="business_name" #business_name [(ngModel)] = "business.business_name" />
+        <label class="col-md-4">Place </label>
+        <input type="text" class="form-control" formControlName="place" #place [(ngModel)] = "business.place" />
       </div>
-      <div *ngIf="angForm.controls['business_name'].invalid && (angForm.controls['business_name'].dirty || angForm.controls['business_name'].touched)" class="alert alert-danger">
-        <div *ngIf="angForm.controls['business_name'].errors.required">
-          Person Business is required.
+      <div *ngIf="angForm.controls['place'].invalid && (angForm.controls['place'].dirty || angForm.controls['place'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['place'].errors.required">
+          Place is required.
         </div>
       </div>
       <div class="form-group">
-        <label class="col-md-4">Business GST Number </label>
-        <input type="text" class="form-control" formControlName="business_gst_number" #business_gst_number [(ngModel)] = "business.business_gst_number" />
+        <label class="col-md-4">Rating </label>
+        <input type="number" class="form-control" formControlName="rating" #rating [(ngModel)] = "business.rating" />
       </div>
-      <div *ngIf="angForm.controls['business_gst_number'].invalid && (angForm.controls['business_gst_number'].dirty || angForm.controls['business_gst_number'].touched)" class="alert alert-danger">
-        <div *ngIf="angForm.controls['business_gst_number'].errors.required">
-          Business GST Number is required.
+      <div *ngIf="angForm.controls['rating'].invalid && (angForm.controls['rating'].dirty || angForm.controls['rating'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['rating'].errors.required">
+          Rating is required.
         </div>
       </div>
       <div class="form-group">
-        <button (click)="updateBusiness(person_name.value, business_name.value, business_gst_number.value)"
+        <button (click)="updateBusiness(name.value, place.value, rating.value)"
         [disabled]="angForm.invalid" 
         class="btn btn-primary">Update Business</button>
       </div>

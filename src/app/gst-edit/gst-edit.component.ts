@@ -22,9 +22,9 @@ export class GstEditComponent implements OnInit {
 
   createForm() {
     this.angForm = this.fb.group({
-        person_name: ['', Validators.required ],
-        business_name: ['', Validators.required ],
-        business_gst_number: ['', Validators.required ]
+        name: ['', Validators.required ],
+        place: ['', Validators.required ],
+        rating: ['', Validators.required ]
       });
     }
 
@@ -37,10 +37,11 @@ export class GstEditComponent implements OnInit {
     });
   }
 
-  updateBusiness(person_name, business_name, business_gst_number) {
+  updateBusiness(name, place, rating) {
    this.route.params.subscribe(params => {
-      this.bs.updateBusiness(person_name, business_name, business_gst_number, params['id']);
-      this.router.navigate(['business']);
+      this.bs.updateBusiness(name, place, rating, params['id']);
+      // this.router.navigate(['business']);
+      location.reload()
    });
 }
 }

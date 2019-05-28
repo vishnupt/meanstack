@@ -17,6 +17,14 @@ import { RegistrationComponentComponent } from './registration-component/registr
 import { LoginComponentComponent } from './login-component/login-component.component';
 
 import { MyMaterialModule } from  './material.module';
+import { RatingComponent } from './rating/rating.component';
+import {RouterModule} from "@angular/router";
+import {FormsModule} from "@angular/forms";
+import {FileSelectDirective, FileUploader, FileDropDirective} from "ng2-file-upload";
+import {CustomMaterialModule} from "./rating/material.module";
+import {MatSelectModule, MatOptionModule} from '@angular/material';
+import { HomeComponent } from './home/home.component';
+// import {FileSelectDirective, FileDropDirective } from 'ng2-file-upload/ng2-file-upload';
 
 @NgModule({
   declarations: [
@@ -26,15 +34,28 @@ import { MyMaterialModule } from  './material.module';
     GstEditComponent,
     RegistrationComponentComponent,
     LoginComponentComponent,
+    RatingComponent,
+    FileSelectDirective,
+    // FileUploader,
+    FileDropDirective,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    RouterModule,
     SlimLoadingBarModule,
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MyMaterialModule,
+    CustomMaterialModule,
+    RouterModule.forRoot([
+      {path: '', component: RatingComponent}
+    ]),
+    BrowserAnimationsModule,
+    MatSelectModule,
+    MatOptionModule
   ],
   providers: [ BusinessService ],
   bootstrap: [AppComponent]
