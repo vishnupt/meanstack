@@ -39,7 +39,7 @@ export class GstEditComponent implements OnInit {
 
   updateBusiness(name, place, rating) {
    this.route.params.subscribe(params => {
-      this.bs.updateBusiness(name, place, rating, params['id']);
+      this.bs.updateBusiness(name, place, rating, params['id'], '');
       // this.router.navigate(['business']);
       location.reload()
    });

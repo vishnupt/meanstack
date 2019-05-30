@@ -13,11 +13,16 @@ import Business from '../Business';
   templateUrl: './rating.component.html',
   styleUrls: ['./rating.component.css']
 })
+
+
 export class RatingComponent implements OnInit {
 
   businesses: Business[];
   uploadForm: FormGroup;
   current_rating;
+  total_ratings;
+  place;
+  id;
   public uploader:FileUploader = new FileUploader({
     isHTML5: true
   });
@@ -52,8 +57,10 @@ export class RatingComponent implements OnInit {
   currentRating(value){
     for(let i=0;i<this.businesses.length; i++){
       if(value==this.businesses[i].name){
-        console.log(this.businesses[i]._id);
         this.current_rating = this.businesses[i].rating;
+        this.total_ratings = this.businesses[i].total_ratings;
+        this.place = this.businesses[i].place;
+        this.id = this.businesses[i]._id;
       }
     }    
   }
@@ -70,19 +77,16 @@ export class RatingComponent implements OnInit {
     });
   }
 
-  updateBusiness(name, place, rating, id) {
+  updateBusiness(name, place, rating, id, total_ratings) {
+    console.log(name, place, rating, id, total_ratings)
     for(let i=0;i<this.businesses.length; i++){
       if(name==this.businesses[i].name){
         id = this.businesses[i]._id;
         place = this.businesses[i].place;
-        let old_rating = this.businesses[i].rating;
-        let total_ratings = this.businesses[i].rating;
-        let new_total_rating = (total_ratings + 1);
-        let new_rating = ((old_rating + rating)/new_total_rating)
       }
     } 
     this.route.params.subscribe(params => {
-       this.bs.updateBusiness(name, place, new_rating, id, new_total_rating);
+       this.bs.updateBusiness(name, place, rating, id, total_ratings);
        // this.router.navigate(['business']);
        location.reload()
     });
