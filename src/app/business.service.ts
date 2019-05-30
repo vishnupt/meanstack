@@ -6,8 +6,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class BusinessService {
 
-  uri = 'http://localhost:4000/business';
-  versionuri = 'http://localhost:4000/getversion';
+  uri = 'https://hotel-rating-angular.herokuapp.com/business';
+  versionuri = 'https://hotel-rating-angular.herokuapp.com/getversion';
 
   constructor(private http: HttpClient) { }
 

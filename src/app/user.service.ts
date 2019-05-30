@@ -6,8 +6,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UserService {
 
-  uri = 'http://localhost:4000/user';
-  versionuri = 'http://localhost:4000/getversion';
+  uri = 'https://hotel-rating-angular.herokuapp.com/user';
+  versionuri = 'https://hotel-rating-angular.herokuapp.com/getversion';
 
   constructor(private http: HttpClient) { }
 
