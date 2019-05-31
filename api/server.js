@@ -9,6 +9,15 @@ var cors = require('cors')
 const app = express();
 app.use(cors())
 
+// const MongoClient = require('mongodb').MongoClient;
+// const uri = "mongodb+srv://mongouser:<password>@cluster0-th4wg.mongodb.net/test?retryWrites=true&w=majority";
+// const client = new MongoClient(uri, { useNewUrlParser: true });
+// client.connect(err => {
+//   const collection = client.db("test").collection("devices");
+//   // perform actions on the collection object
+//   client.close();
+// });
+
 const businessRoute = require('./routes/business.route');
 const userRoute = require('./routes/user.route');
 mongoose.Promise = global.Promise;
